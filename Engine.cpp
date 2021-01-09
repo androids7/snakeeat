@@ -5,14 +5,16 @@
 #include <ctime>
 
 
-#include "HomeStatge.h"
+#include "HomeStage.h"
+#include "Context.h"
+
+
 
 SDL_Window *window = NULL;
 SDL_Renderer *ren= NULL;
 
 bool gameOver = false;
 
-HomeStatge *home = new HomeStatge();
 
 void Init(void) {
   //图形的初始化
@@ -30,20 +32,20 @@ void Init(void) {
 }
 
 
-
+/*
 
 Uint32 callback(Uint32 interval, void *param)//回调函数 
 {
 
+
+/*
 SDL_Event gameEvent;       
 
 
 
 
 
-
-while ( SDL_PollEvent(&gameEvent) != 0 ){  /*　SDL_PollEvent(&gameEvent);  if(&gameEvent != 0 ){　*/
-
+if ( SDL_PollEvent(&gameEvent) != 0 ){  
   if (gameEvent.type == SDL_QUIT) {
 
   	gameOver = true;
@@ -52,26 +54,41 @@ while ( SDL_PollEvent(&gameEvent) != 0 ){  /*　SDL_PollEvent(&gameEvent);  if(&
   }
 
   home->logic();
-  printf("he\n");
+  
 }
+
+
+
 
 //   gameOver = true;
 	return interval;
 }
 
-
+*/
 
 int main(int argc,char* argv[])
 {
   Init();
-  
-  
-  GraphicsFrameWork *g = new GraphicsFrameWork(ren,window);
+
+  Context *ctx = new Context(ren, window);
+  HomeStage *home = new HomeStage(ctx);
 
   
   
-//SDL_TimerID timer = SDL_AddTimer(100, callback, NULL);//创立定时器timer 
+  ctx->addStage("home",(Stage*)home);
+  ctx->setStage("home");
+  
+  
+  
+  //GraphicsFrameWork *g = new GraphicsFrameWork(ren,window);
 
+  
+  
+//SDL_TimerID timer = SDL_AddTimer(10, callback, NULL);//创立定时器timer 
+
+ 	
+ 	
+ 	
  	
  	
   
@@ -87,8 +104,7 @@ SDL_Event gameEvent;
 
 
 
-while ( SDL_PollEvent(&gameEvent) != 0 ){  /*　SDL_PollEvent(&gameEvent);  if(&gameEvent != 0 ){　*/
-
+while ( SDL_PollEvent(&gameEvent) != 0 ){  
   if (gameEvent.type == SDL_QUIT) {
 
     gameOver = true;
@@ -97,9 +113,9 @@ while ( SDL_PollEvent(&gameEvent) != 0 ){  /*　SDL_PollEvent(&gameEvent);  if(&
   
 }
 
-home->logic();
-home->update(g);
-
+//home->logic();
+//home->update(g);
+ctx->loop();
 
   }
 
