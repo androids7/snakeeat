@@ -17,7 +17,10 @@ class GraphicsFrameWork{
           void Text(char *t, int x, int y, int size, int r, int g, int b);
           void DrawPoint(int x1, int y1, int r, int g, int b);
 
-         
+          void DrawLines(SDL_Point *point,int count, int r, int g, int b);
+
+
+
 
           void gr_point(int x, int y, int color);
 

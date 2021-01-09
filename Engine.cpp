@@ -5,14 +5,14 @@
 #include <ctime>
 
 
-#include "HomeState.h"
+#include "HomeStatge.h"
 
 SDL_Window *window = NULL;
 SDL_Renderer *ren= NULL;
 
 bool gameOver = false;
 
-HomeState *home = new HomeState();
+HomeStatge *home = new HomeStatge();
 
 void Init(void) {
   //图形的初始化

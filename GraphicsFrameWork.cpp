@@ -59,9 +59,9 @@ void GraphicsFrameWork::FillCir(int x0, int y0, int r, int color) {
 void GraphicsFrameWork::FillCir
 (int x,int y,int r0, int r,int g,int b)
 {
-	int k=0,xx,yy,n=5*(r0+1)/4;
+	int k=0,xx,yy,n=6*(r0+1)/4;
 
-        SDL_SetRenderDrawColor(_ren, r,        g, b, 255);
+        SDL_SetRenderDrawColor(_ren, r,g, b, 255);
         while (k <= n) {
           xx = ((n * n - k * k) * r0) / (n * n + k * k) + x;
           yy = 2 * n * k * r0 / (n * n + k * k) + y;
@@ -76,6 +76,14 @@ void GraphicsFrameWork::FillCir
         
         
 }
+
+void GraphicsFrameWork::DrawLines(SDL_Point *point,int count, int r, int g, int b) {
+
+  SDL_SetRenderDrawColor(_ren, (Uint8)r, (Uint8)g,
+                         (Uint8)b, 255);
+  SDL_RenderDrawLines(_ren, point,
+                      count);
+	}
 
 
 void DrawCircle(SDL_Renderer *ren,int radius){
